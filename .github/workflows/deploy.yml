@@ -3,7 +3,7 @@ name: Deploy portfolio
 on:
   push:
     branches: [main]
-    paths: ["site.b64", ".github/workflows/deploy.yml"]
+    paths: ["site.b64", "patches/**", ".github/workflows/deploy.yml"]
   workflow_dispatch:
 
 permissions:
@@ -23,11 +23,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Unpack source bundle
+      - name: Unpack source bundle and apply patches
         run: |
           mkdir -p /tmp/app
           base64 -d site.b64 | tar xz -C /tmp/app
-          ls /tmp/app
+          for p in patches/*.patch; do patch -p1 -d /tmp/app < "$p"; done
       - name: Install and build
         working-directory: /tmp/app
         run: |
