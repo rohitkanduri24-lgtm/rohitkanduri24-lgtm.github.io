@@ -1,0 +1,249 @@
+diff -ru a/src/app/globals.css src/app/globals.css
+--- a/src/app/globals.css
++++ b/src/app/globals.css
+@@ -8,15 +8,15 @@
+    one pen-blue for evidence, one red pencil reserved for "this is the problem". */
+ :root {
+   color-scheme: light;
+-  --paper: #fbfbf8;
+-  --paper-2: #f2f4ef;
++  --paper: #f6f2ea;
++  --paper-2: #eee8da;
+   --sheet: #ffffff;
+-  --ink: #0f1a16;
+-  --ink-2: #3a4943;
+-  --ink-3: #5d6b65;
+-  --rule: #cfd5ca;
+-  --rule-soft: #e3e7de;
+-  --pen: #1c5cab;          /* text/links (6:1 on paper) */
++  --ink: #111314;
++  --ink-2: #3b4147;
++  --ink-3: #5f646c;
++  --rule: #ded7c9;
++  --rule-soft: #ebe5d8;
++  --pen: #0f766e;          /* text/links (6:1 on paper) */
+   --pen-fill: #2a78d6;     /* data series 1 */
+   --alt-fill: #eb6834;     /* data series 2 */
+   --alt-text: #a63d12;
+@@ -24,8 +24,8 @@
+   --flag-wash: #f1d7d2;
+   --ok: #1d6b4a;
+   --mark: #e9d66b;
+-  --shadow: 0 1px 0 rgba(15, 26, 22, 0.06), 0 12px 32px -18px rgba(15, 26, 22, 0.35);
+-  --serif: "Newsreader Variable", "Iowan Old Style", Georgia, serif;
++  --shadow: 0 24px 70px -30px rgba(17, 19, 20, 0.22);
++  --serif: "Hanken Grotesk Variable", Arial, Helvetica, system-ui, sans-serif;
+   --sans: "Hanken Grotesk Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+ }
+ :root[data-theme="dark"] {
+@@ -58,8 +58,8 @@
+   color: var(--ink);
+   font-family: var(--serif);
+   font-optical-sizing: auto;
+-  font-size: clamp(1.0625rem, 0.98rem + 0.3vw, 1.2rem);
+-  line-height: 1.62;
++  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
++  line-height: 1.6;
+   text-rendering: optimizeLegibility;
+   -webkit-font-smoothing: antialiased;
+   overflow-x: clip;
+@@ -79,24 +79,24 @@
+ /* type scale (1.25) */
+ .display {
+   font-family: var(--serif);
+-  font-weight: 460;
+-  font-size: clamp(2.9rem, 1.4rem + 6.4vw, 7rem);
+-  line-height: 0.96;
+-  letter-spacing: -0.035em;
++  font-weight: 800;
++  font-size: clamp(2.6rem, 1.3rem + 5.6vw, 5.8rem);
++  line-height: 0.98;
++  letter-spacing: -0.045em;
+   margin: 0;
+   text-wrap: balance;
+ }
+-.display .soft { display: block; font-style: italic; font-weight: 380; color: var(--ink-2); }
++.display .soft { display: block; font-style: normal; font-weight: 800; color: var(--pen); }
+ .h2 {
+   font-family: var(--serif);
+-  font-weight: 480;
+-  font-size: clamp(2rem, 1.2rem + 3.2vw, 3.7rem);
+-  line-height: 1.02;
+-  letter-spacing: -0.028em;
++  font-weight: 800;
++  font-size: clamp(1.9rem, 1.2rem + 2.8vw, 3.2rem);
++  line-height: 1.04;
++  letter-spacing: -0.035em;
+   margin: 0 0 1.1rem;
+   text-wrap: balance;
+ }
+-.h3 { font-weight: 560; font-size: 1.35rem; line-height: 1.2; letter-spacing: -0.012em; margin: 0 0 0.4rem; }
++.h3 { font-weight: 750; font-size: 1.35rem; line-height: 1.2; letter-spacing: -0.012em; margin: 0 0 0.4rem; }
+ .lede { font-size: clamp(1.2rem, 1.05rem + 0.7vw, 1.55rem); line-height: 1.45; color: var(--ink-2); max-width: 36em; margin: 0; text-wrap: pretty; }
+ .prose { max-width: 38em; text-wrap: pretty; margin: 0 0 1em; }
+ .prose p { margin: 0 0 1em; }
+@@ -105,19 +105,10 @@
+ 
+ /* ───────────────────────── page frame ───────────────────────── */
+ .shell { display: grid; grid-template-columns: minmax(0, 1fr); min-height: 100dvh; }
+-@media (min-width: 1080px) { .shell { grid-template-columns: 15rem minmax(0, 1fr); } }
+ .rail {
+   display: none;
+ }
+-@media (min-width: 1080px) {
+-  .rail {
+-    display: flex; flex-direction: column; justify-content: space-between;
+-    position: sticky; top: 0; height: 100dvh; padding: 2rem 1.5rem 2rem 2rem;
+-    border-right: 1px solid var(--rule);
+-    background: linear-gradient(90deg, var(--paper-2), var(--paper));
+-  }
+-}
+-.rail-name { font-family: var(--serif); font-weight: 560; font-size: 1.15rem; line-height: 1.15; letter-spacing: -0.01em; text-decoration: none; color: var(--ink); }
++.rail-name { font-family: var(--serif); font-weight: 800; font-size: 1.15rem; line-height: 1.15; letter-spacing: -0.01em; text-decoration: none; color: var(--ink); }
+ .rail-role { display: block; font-family: var(--sans); font-weight: 400; font-size: 0.8125rem; color: var(--ink-3); margin-top: 0.3rem; letter-spacing: 0; }
+ .rail ol { list-style: none; margin: 2.2rem 0 0; padding: 0; }
+ .rail li a {
+@@ -136,15 +127,13 @@
+   padding: 0.7rem 1rem; background: color-mix(in oklab, var(--paper) 88%, transparent);
+   backdrop-filter: blur(10px); border-bottom: 1px solid var(--rule);
+ }
+-@media (min-width: 1080px) { .topbar { display: none; } }
+ .topbar nav { display: flex; gap: 0.15rem; overflow-x: auto; scrollbar-width: none; padding-left: 0.5rem; }
+ .topbar nav::-webkit-scrollbar { display: none; }
+ .topbar nav a { font-family: var(--sans); font-size: 0.85rem; padding: 0.45rem 0.6rem; color: var(--ink-3); text-decoration: none; white-space: nowrap; border-radius: 99px; }
+ .topbar nav a[aria-current="true"] { color: var(--ink); background: var(--rule-soft); }
+ 
+ main { min-width: 0; }
+-.sect { padding: clamp(4.5rem, 9vw, 8.5rem) clamp(1.1rem, 4vw, 4rem); }
+-.sect + .sect { border-top: 1px solid var(--rule); }
++.sect { background: var(--paper); color: var(--ink); padding: clamp(4.5rem, 9vw, 8.5rem) clamp(1.1rem, 4vw, 4rem); }
+ .wrap { max-width: 74rem; margin: 0 auto; }
+ .sect-head { display: grid; gap: 1rem; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
+ @media (min-width: 900px) { .sect-head { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: end; column-gap: 3rem; } }
+@@ -153,7 +142,7 @@
+ /* ───────────────────────── controls ───────────────────────── */
+ .btn {
+   display: inline-flex; align-items: center; gap: 0.55rem; font-family: var(--sans); font-weight: 600; font-size: 0.95rem;
+-  padding: 0.8rem 1.15rem; border-radius: 3px; border: 1px solid var(--ink); background: var(--ink); color: var(--paper);
++  padding: 0.85rem 1.2rem; border-radius: 8px; border: 1px solid var(--ink); background: var(--ink); color: var(--paper);
+   text-decoration: none; transition: transform 0.18s, background 0.18s, color 0.18s;
+ }
+ .btn:hover { transform: translateY(-1px); }
+@@ -173,7 +162,7 @@
+ .icon-btn:hover { color: var(--ink); border-color: var(--ink-3); }
+ 
+ /* ───────────────────────── sheet surface (cards used only where content is truly bounded) ───────────────────────── */
+-.sheet { background: var(--sheet); border: 1px solid var(--rule); border-radius: 4px; box-shadow: var(--shadow); }
++.sheet { background: var(--sheet); border: 1px solid var(--rule); border-radius: 8px; box-shadow: var(--shadow); }
+ .flag { color: var(--flag); }
+ .mark { background: linear-gradient(transparent 55%, var(--mark) 55%, var(--mark) 92%, transparent 92%); padding: 0 0.1em; }
+ 
+@@ -217,6 +206,25 @@
+ /* polish: annotation halo, sticky-bar offset, topbar fade */
+ .chart .strong { paint-order: stroke; stroke: var(--sheet); stroke-width: 4px; stroke-linejoin: round; }
+ section[id], [id="top"] { scroll-margin-top: 3.6rem; }
+-@media (min-width: 1080px) { section[id], [id="top"] { scroll-margin-top: 0; } }
+ .topbar nav { min-width: 0; flex: 1; margin-right: 0.5rem; mask-image: linear-gradient(to right, #000 88%, transparent); }
+ .topbar .icon-btn { flex: none; }
++
++/* ───────── reference look: cream page, bold sans, top bar, alternating bands ───────── */
++.topbar { padding: 0.65rem clamp(1rem, 4vw, 4rem); gap: 1rem; background: color-mix(in oklab, var(--paper) 92%, transparent); }
++.topbar nav { justify-content: flex-end; padding-left: 0; mask-image: none; margin-right: 0; }
++@media (max-width: 760px) { .topbar nav { mask-image: linear-gradient(to right, #000 88%, transparent); justify-content: flex-start; margin-right: 0.5rem; } }
++.topbar nav a { font-weight: 600; border-radius: 8px; }
++.topbar nav a[aria-current="true"] { background: var(--ink); color: var(--paper); }
++.brand { display: inline-flex; align-items: center; gap: 0.65rem; text-decoration: none; color: var(--ink); font-weight: 800; letter-spacing: -0.01em; flex: none; }
++.brand .mono { display: inline-grid; place-items: center; width: 2.4rem; height: 2.4rem; border-radius: 8px; background: var(--ink); color: var(--paper); font-size: 0.9rem; letter-spacing: 0; }
++@media (max-width: 760px) { .brand .nm { display: none; } }
++.icon-btn { border-radius: 8px; background: var(--sheet); }
++.eyebrow { margin: 0 0 1rem; font-family: var(--sans); font-weight: 800; font-size: 0.8125rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--pen); }
++.band-dark { color-scheme: dark; --paper: #15191d; --paper-2: #1c2227; --sheet: #20272d; --ink: #f6f2ea; --ink-2: #c9cbc8; --ink-3: #9da3a8; --rule: #3a434b; --rule-soft: #2a3238;
++  --pen: #5eead4; --pen-fill: #3987e5; --alt-fill: #d95926; --alt-text: #f08a5d; --flag: #ff8478; --flag-wash: #3a1d1a; --ok: #62c79b; --mark: #8a7a22; --shadow: 0 24px 70px -30px rgba(0, 0, 0, 0.7); }
++.band-white { --paper: #ffffff; --paper-2: #f6f2ea; --sheet: #ffffff; }
++:root[data-theme="dark"] .band-white { --paper: #131c18; --paper-2: #0d1411; --sheet: #17211c; }
++.case-title, .qt, .caps dt, .path .what b, .kpi b { font-weight: 800; letter-spacing: -0.035em; }
++.qask { font-style: normal; font-weight: 600; }
++.suspects button, .kpi, .recipe li { border-radius: 8px; }
++.tip { border-radius: 8px; }
+diff -ru a/src/app/page.tsx src/app/page.tsx
+--- a/src/app/page.tsx
++++ b/src/app/page.tsx
+@@ -14,7 +14,7 @@
+       <main id="main">
+         <Hero />
+ 
+-        <section id="thinking" className="sect" aria-labelledby="thinking-h">
++        <section id="thinking" className="sect band-dark" aria-labelledby="thinking-h">
+           <div className="wrap">
+             <header className="sect-head">
+               <h2 className="h2" id="thinking-h">Inside my thinking</h2>
+@@ -24,7 +24,7 @@
+           </div>
+         </section>
+ 
+-        <section id="investigation" className="sect" aria-labelledby="inv-h">
++        <section id="investigation" className="sect band-white" aria-labelledby="inv-h">
+           <div className="wrap">
+             <header className="sect-head">
+               <h2 className="h2" id="inv-h">The metric that went up</h2>
+@@ -44,7 +44,7 @@
+           </div>
+         </section>
+ 
+-        <section id="questions" className="sect" aria-labelledby="q-h">
++        <section id="questions" className="sect band-dark" aria-labelledby="q-h">
+           <div className="wrap">
+             <header className="sect-head">
+               <h2 className="h2" id="q-h">Questions worth asking</h2>
+@@ -54,7 +54,7 @@
+           </div>
+         </section>
+ 
+-        <section id="capabilities" className="sect" aria-labelledby="cap-h">
++        <section id="capabilities" className="sect band-white" aria-labelledby="cap-h">
+           <div className="wrap">
+             <header className="sect-head">
+               <h2 className="h2" id="cap-h">What I can do, and where you can see it</h2>
+@@ -74,7 +74,7 @@
+           </div>
+         </section>
+ 
+-        <section id="contact" className="sect" aria-labelledby="c-h">
++        <section id="contact" className="sect band-dark" aria-labelledby="c-h">
+           <div className="wrap"><h2 className="sr-only" id="c-h">Talk to me</h2><Contact /></div>
+         </section>
+       </main>
+diff -ru a/src/components/Hero.tsx src/components/Hero.tsx
+--- a/src/components/Hero.tsx
++++ b/src/components/Hero.tsx
+@@ -30,6 +30,7 @@
+   return (
+     <section id="top" className="hero" aria-labelledby="hero-title">
+       <div className="wrap">
++        <p className="eyebrow">{person.role}</p>
+         <h1 id="hero-title" className="display">
+           {hero.headline}
+           <span className="soft">{hero.second}</span>
+@@ -64,7 +65,9 @@
+       </div>
+       <style>{`
+         .hero { padding: clamp(3.5rem, 8vw, 7rem) clamp(1.1rem, 4vw, 4rem) clamp(3rem, 6vw, 5.5rem);
+-          background-image: radial-gradient(var(--rule) 1px, transparent 1.2px); background-size: 26px 26px; background-position: -1px -1px; }
++          background: linear-gradient(135deg, var(--paper) 0%, var(--paper-2) 100%); position: relative; overflow: clip; }
++        .hero::after { content: ""; position: absolute; right: -6rem; top: 3rem; width: 24rem; height: 24rem; border: 1px solid var(--rule); border-radius: 50%; pointer-events: none; }
++        .hero .wrap { position: relative; z-index: 1; }
+         .hero .display { margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+         .hero-grid { display: grid; gap: clamp(2rem, 4vw, 3.5rem); align-items: start; }
+         @media (min-width: 960px) { .hero-grid { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); } }
+diff -ru a/src/components/Nav.tsx src/components/Nav.tsx
+--- a/src/components/Nav.tsx
++++ b/src/components/Nav.tsx
+@@ -51,7 +51,7 @@
+         </div>
+       </aside>
+       <header className="topbar">
+-        <a href="#top" className="rail-name" style={{ fontSize: "1rem" }}>{person.short}</a>
++        <a href="#top" className="brand" aria-label={`${person.name}, back to top`}><span className="mono" aria-hidden>{person.name.split(" ").filter((_, i, a) => i === 0 || i === a.length - 1).map((w) => w[0]).join("")}</span><span className="nm">{person.short}</span></a>
+         <nav aria-label="Sections">
+           {sections.filter((s) => s.id !== "top").map((s) => (
+             <a key={s.id} href={`#${s.id}`} aria-current={active === s.id ? "true" : undefined}>{s.label}</a>
