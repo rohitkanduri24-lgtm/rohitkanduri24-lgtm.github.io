@@ -1,0 +1,76 @@
+diff -ru a/src/app/globals.css src/app/globals.css
+--- a/src/app/globals.css
++++ b/src/app/globals.css
+@@ -8,14 +8,14 @@
+    one pen-blue for evidence, one red pencil reserved for "this is the problem". */
+ :root {
+   color-scheme: light;
+-  --paper: #e8ebe5;
+-  --paper-2: #dde2d9;
+-  --sheet: #f3f5f0;
++  --paper: #fbfbf8;
++  --paper-2: #f2f4ef;
++  --sheet: #ffffff;
+   --ink: #0f1a16;
+   --ink-2: #3a4943;
+   --ink-3: #5d6b65;
+-  --rule: #b8c1b4;
+-  --rule-soft: #cdd4c9;
++  --rule: #cfd5ca;
++  --rule-soft: #e3e7de;
+   --pen: #1c5cab;          /* text/links (6:1 on paper) */
+   --pen-fill: #2a78d6;     /* data series 1 */
+   --alt-fill: #eb6834;     /* data series 2 */
+@@ -28,28 +28,6 @@
+   --serif: "Newsreader Variable", "Iowan Old Style", Georgia, serif;
+   --sans: "Hanken Grotesk Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+ }
+-@media (prefers-color-scheme: dark) {
+-  :root:where(:not([data-theme="light"])) {
+-    color-scheme: dark;
+-    --paper: #0d1411;
+-    --paper-2: #131c18;
+-    --sheet: #17211c;
+-    --ink: #e6ebe4;
+-    --ink-2: #b9c4bc;
+-    --ink-3: #8c9a92;
+-    --rule: #33423b;
+-    --rule-soft: #243029;
+-    --pen: #8fb4f2;
+-    --pen-fill: #3987e5;
+-    --alt-fill: #d95926;
+-    --alt-text: #f08a5d;
+-    --flag: #ff8478;
+-    --flag-wash: #3a1d1a;
+-    --ok: #62c79b;
+-    --mark: #8a7a22;
+-    --shadow: 0 1px 0 rgba(0, 0, 0, 0.4), 0 14px 36px -18px rgba(0, 0, 0, 0.8);
+-  }
+-}
+ :root[data-theme="dark"] {
+   color-scheme: dark;
+   --paper: #0d1411;
+diff -ru a/src/app/layout.tsx src/app/layout.tsx
+--- a/src/app/layout.tsx
++++ b/src/app/layout.tsx
+@@ -17,7 +17,7 @@
+   authors: [{ name: person.name }],
+ };
+ export const viewport: Viewport = {
+-  themeColor: [{ media: "(prefers-color-scheme: light)", color: "#e8ebe5" }, { media: "(prefers-color-scheme: dark)", color: "#0d1411" }],
++  themeColor: "#fbfbf8",
+ };
+ 
+ const themeInit = `try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}`;
+diff -ru a/src/components/Nav.tsx src/components/Nav.tsx
+--- a/src/components/Nav.tsx
++++ b/src/components/Nav.tsx
+@@ -11,7 +11,7 @@
+   useEffect(() => {
+     const el = document.documentElement;
+     const t = el.getAttribute("data-theme");
+-    setDark(t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches);
++    setDark(t === "dark");
+   }, []);
+   const flip = () => {
+     const next = !dark;
